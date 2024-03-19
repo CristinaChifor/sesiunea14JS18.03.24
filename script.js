@@ -75,7 +75,9 @@ const posts = [
 const body = document.querySelector('body');
 let htmlContent = '';
 for (const post of posts) {
-    const card = `<article class="card">
+    const article = document.createElement('article');
+   article.classList.add('card');
+    const card = `
                     <p>${post.title}</p>
     
                     <ol>
@@ -84,10 +86,14 @@ for (const post of posts) {
                     </ol>
                     <label for="comment">Comment</label>
                     <input type="text" id="comment" name="comment" value="${post.comment}>
-                    <footer></footer>
-                    </article>`
+                    <footer>
+                    <strong>Author</strong> ${post.author} <span></span>
+                    </footer>
+                    `;
 
-    htmlContent += card;
+    article.innerHTML = card;
+
+    body.appendChild(article);
 }
 
 body.innerHTML = htmlContent;
@@ -142,9 +148,29 @@ for(const paragraph of allP) {
     paragraph.style.textTransform = 'uppercase';
 }
 
-// Create element
+// Create HTML element
 // document.createElement() este folosit pentru a crea un element nou.
 //  Acest element este creat, dar nu este încă atașat la nici o parte a DOM-ului.
+
+const newParagraph = document.createElement('p');
+newParagraph.textContent = "My new paragraph";
+console.log(newParagraph);
+ 
+body.appendChild(newParagraph);
+
+const span = document.createElement('span');
+span.textContent = ' altceva';
+span.classList.add('red');
+newParagraph.appendChild(span);
+
+// stergere element
+
+const allCards = document.querySelectorAll('card');
+allCards[allCards.length - 1].remove();
+
+// Event listener
+// Event listeners (ascultători de evenimente) sunt funcții care sunt atașate la elemente HTML și care sunt declanșate în momentul în care un anumit eveniment are loc asupra acelui element.
+// Aceste evenimente pot fi, de exemplu, un clic pe un buton, o tastare apăsată, sau orice altă interacțiune cu utilizatorul.
 
 
 
