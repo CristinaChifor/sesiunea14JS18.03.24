@@ -92,6 +92,10 @@ for (const post of posts) {
                     `;
 
     article.innerHTML = card;
+    const comm = article.querySelector('input');
+comm.addEventListener('keydown', (event) => {
+console.log('event: ', event);
+});
 
     body.appendChild(article);
 }
@@ -168,9 +172,20 @@ newParagraph.appendChild(span);
 const allCards = document.querySelectorAll('card');
 allCards[allCards.length - 1].remove();
 
-// Event listener
+// Event listeners
 // Event listeners (ascultători de evenimente) sunt funcții care sunt atașate la elemente HTML și care sunt declanșate în momentul în care un anumit eveniment are loc asupra acelui element.
 // Aceste evenimente pot fi, de exemplu, un clic pe un buton, o tastare apăsată, sau orice altă interacțiune cu utilizatorul.
 
+const interactive = document.getElementById('interactive-text');
 
+const onClick = () => {
+    if(interactive.classList.contains('red')) {
+        interactive.classList.remove('red');
+    }
+    else {
+        interactive.classList.add('red');
+    }   
+}
+
+interactive.addEventListener('click', onClick);
 
