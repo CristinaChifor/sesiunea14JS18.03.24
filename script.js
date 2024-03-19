@@ -91,7 +91,10 @@ for (const post of posts) {
 }
 
 body.innerHTML = htmlContent;
+//body.textContent = htmlContent;
 
+
+// innerText vs textContent
 const firstP = document.querySelector('p');
 console.log(firstP);
 console.log(firstP.textContent);
@@ -101,5 +104,47 @@ console.log(firstP.textContent);
 console.log(firstP.innerText);
 firstP.innerText = 'asdbgf';
 console.log(firstP.innerText);
+
+const firstInput = document.querySelectorAll('input');
+console.log(`input: `, firstInput);
+console.log(`....`);
+
+
+// getAttribute & setAttribute
+firstInput[0].readOnly = true;
+
+firstInput[1].setAttribute('readonly', true);
+
+let firstInputValue = firstInput[0].getAttribute('value');
+console.log('firstValue = ', firstInputValue);
+
+// Manipulare clase CSS
+// classList
+//classList: Această proprietate este utilă pentru a lucra cu clasele CSS ale unui element. Permite adăugarea, eliminarea sau verificarea claselor.
+
+const allP = document.querySelectorAll('p');
+for (const paragraph of allP) {
+    paragraph.classList.add('red', 'underline');
+}
+
+let index = 0;
+
+for(const paragraph of allP) {
+    if (index %2 > 0) {
+        paragraph.classList.remove('red');
+    }
+    index++;
+}
+
+// Manipulare clase CSS: Style
+
+for(const paragraph of allP) {
+    paragraph.style.textTransform = 'uppercase';
+}
+
+// Create element
+// document.createElement() este folosit pentru a crea un element nou.
+//  Acest element este creat, dar nu este încă atașat la nici o parte a DOM-ului.
+
 
 
