@@ -34,8 +34,72 @@ console.log(cardParagraph);
 
 const allTodos = document.querySelectorAll('#card > ol > .todo-item');
 console.log(allTodos);
+console.log(allTodos[0].textContent);
+console.log(allTodos[0].innerText);
 
+// Manipulate the DOM
 
+// manipularea unui element
+// textContent și innerHTML:
+// Aceste proprietăți permit accesarea și modificarea conținutului text al unui element. textContent returnează sau setează doar textul, în timp ce innerHTML permite lucrul cu conținut HTML.
+ 
+const p = document.querySelector('p');
+p.textContent = 'This was added with JS';
 
+const footer = document.querySelector('footer');
+const author ='John Doe';
+footer.innerHTML = '<strong>Author: </strong><span>John Doe</span>';
+footer.innerHTML = `<strong>Author: </strong><span> ${author}</span>`;
+
+const posts = [
+    {
+        author: 'Nick',
+        todos: ['do 1', 'do 2'],
+        comment: "my comment",
+        title: 'card 1'
+    },
+    {
+        author: 'Nick',
+        todos: ['do 1', 'do 2'],
+        comment: "my comment",
+        title: 'card 2'
+    },
+    {
+        author: 'Nick',
+        todos: ['do 1', 'do 2'],
+        comment: "my comment",
+        title: 'card 3'
+    }
+];
+
+const body = document.querySelector('body');
+let htmlContent = '';
+for (const post of posts) {
+    const card = `<article class="card">
+                    <p>${post.title}</p>
+    
+                    <ol>
+                    
+                      ${post.todos.map((el) => '<li class="todo-item">' + el + '</li>')}
+                    </ol>
+                    <label for="comment">Comment</label>
+                    <input type="text" id="comment" name="comment" value="${post.comment}>
+                    <footer></footer>
+                    </article>`
+
+    htmlContent += card;
+}
+
+body.innerHTML = htmlContent;
+
+const firstP = document.querySelector('p');
+console.log(firstP);
+console.log(firstP.textContent);
+firstP.textContent = "ast";
+console.log(firstP.textContent);
+
+console.log(firstP.innerText);
+firstP.innerText = 'asdbgf';
+console.log(firstP.innerText);
 
 
