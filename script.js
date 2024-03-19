@@ -95,6 +95,12 @@ for (const post of posts) {
     const comm = article.querySelector('input');
 comm.addEventListener('keydown', (event) => {
 console.log('event: ', event);
+const key = event.key;
+const numbers = '0123456789';
+if (numbers.includes(key)){
+    alert('no numbers allowed');
+}
+event.target.value = event.target.value.slice(0, event.target.value.length - 1);
 });
 
     body.appendChild(article);
