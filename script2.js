@@ -37,6 +37,8 @@ console.log(cardParagraph);
 
 const allTodos = document.querySelectorAll(' #card > ol > .todo-item');
 console.log(allTodos);
+console.log(allTodos[0].textContent);
+console.log(allTodos[0].innerText);
 
 // Manipulate the DOM
 
@@ -46,4 +48,89 @@ console.log(allTodos);
 // textContent returnează sau setează doar textul, în timp ce 
 // innerHTML permite lucrul cu conținut HTML.
 
+const p = document.querySelector('p');
+p.textContent = 'This was added with JS';
 
+const footer = document.querySelector('footer');
+const author = 'John Doe'
+//footer.innerHTML = '<strong>Author: </strong><span>John Doe</span>';
+footer.innerHTML = `<strong>Author: </strong><span>${author}</span>`;
+
+const posts = [
+{
+        autor: 'Nick',
+        todos: ['do 1', 'do 2'],
+        comment: 'my comment',
+        title: 'card 1'
+    },
+
+    {
+        autor: 'Nick',
+        todos: ['do 1', 'do 2'],
+        comment: 'my comment',
+        title: 'card 2'
+    },
+
+    {
+        autor: 'Nick',
+        todos: ['do 1', 'do 2'],
+        comment: 'my comment',
+        title: 'card 3'
+    }
+];
+
+const body = document.querySelector('body');
+let htmlContent = '';
+for (const post of posts) {
+    const card = `<article class="card">
+    <p>${post.title}</p>
+
+    <ol>
+    
+        ${post.todos.map((el) => '<li class="todo-item">' + el +'</li>')}
+    </ol>
+
+    <label for="comment">Comment</label>
+    <input type="text" id="comment" name="comment" value="${post.comment}">
+    <footer></footer>
+    
+</article>`
+
+htmlContent += card;
+}
+
+body.innerHTML = htmlContent;
+//body.textContent = htmlContent;
+
+// innerText vs textContent
+
+const firstP = document.querySelector('p');
+console.log(firstP);
+console.log(firstP.textContent);
+firstP.textContent = "ast";
+console.log(firstP.textContent);
+console.log(firstP.innerText);
+firstP.innerText = 'asgal';
+console.log(firstP.innerText);
+
+// getAttribute și setAttribute: 
+// Aceste metode permit accesarea și modificarea atributelor unui element.
+
+const firstInput = document.querySelectorAll('input');
+console.log('input: ', firstInput);
+console.log('...');
+
+firstInput[0].readOnly = true;
+
+firstInput[1].setAttribute('readonly', true);
+
+let firstInputValue = firstInput[0].getAttribute('value');
+console.log('First value', firstInputValue);
+
+// classList
+//Această proprietate este utilă pentru a lucra cu clasele CSS ale unui element. Permite adăugarea, eliminarea sau verificarea claselor.
+
+const allP = document.querySelectorAll('p');
+for(const paragraph of allP) {
+    paragraph.classList.add('red', 'underline');
+}
