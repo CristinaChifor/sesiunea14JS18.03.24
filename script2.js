@@ -82,7 +82,9 @@ const posts = [
 const body = document.querySelector('body');
 let htmlContent = '';
 for (const post of posts) {
-    const card = `<article class="card">
+    const article = document.createElement('article');
+    article.classList.add('card');
+    const card = `
     <p>${post.title}</p>
 
     <ol>
@@ -92,14 +94,33 @@ for (const post of posts) {
 
     <label for="comment">Comment</label>
     <input type="text" id="comment" name="comment" value="${post.comment}">
-    <footer></footer>
+    <footer>
+    <strong>Author</strong> ${post.autor} <span></span>
+    </footer>
     
-</article>`
+`;
+article.innerHTML = card;
 
-htmlContent += card;
+const comm = article.querySelector('input');
+comm.addEventListener('keydown', (event) => {
+    console.log('event: ', event);
+    const key = event.key;
+    const numbers = '0123456789';
+    if (numbers.includes(key)) {
+        event.preventDefault();
+        alert('no numbers allowed!');
 }
 
-body.innerHTML = htmlContent;
+    const commInput = event.target;
+    const slicedText = commInput.value.slice(0, commInput.value.length - 1);
+    console.log('sliced: ', slicedText)
+    commInput.value = slicedText;
+
+body.appendChild(article);
+
+});
+
+//body.innerHTML = htmlContent;
 //body.textContent = htmlContent;
 
 // innerText vs textContent
@@ -134,3 +155,62 @@ const allP = document.querySelectorAll('p');
 for(const paragraph of allP) {
     paragraph.classList.add('red', 'underline');
 }
+
+let index = 0;
+for(const paragraph of allP) {
+    if(index % 2 > 0) {
+        paragraph.classList.remove('red');
+    }
+    index ++;
+}
+
+// style
+//Această proprietate permite accesarea și modificarea stilurilor CSS ale unui element.
+
+for(const paragraph of allP) {
+    paragraph.style.textTransform = 'uppercase';
+}
+
+// document.createElement() 
+// este folosit pentru a crea un element nou. Acest element este creat, dar nu este încă atașat la nici o parte a DOM-ului.
+
+const newParagraph = document.createElement('P');
+newParagraph.textContent = "My new paragraph";
+console.log(newParagraph);
+
+body.appendChild(newParagraph);
+
+const span = document.createElement('span');
+span.textContent = ' altceva';
+span.classList.add('red');
+newParagraph.appendChild(span);
+
+// Ștergerea unui element
+/**
+ * 1.Identificarea elementului:
+Utilizăm metode precum getElementById, getElementsByClassName, getElementsByTagName, sau querySelector pentru a identifica elementul pe care dorim să-l ștergem.
+2. Ștergerea elementului:
+Se face prin metoda remove() pentru a șterge un element din DOM.
+ */
+
+const allCards = document.querySelectorAll('.card');
+//allCards[allCards.length - 1].remove();
+
+// Event listeners
+/**
+ *(ascultători de evenimente) sunt funcții care sunt atașate la elemente HTML și care sunt declanșate în momentul în care un anumit eveniment are loc asupra acelui element. 
+ Aceste evenimente pot fi, de exemplu, un clic pe un buton, o tastare apăsată, sau orice altă interacțiune cu utilizatorul.
+ */
+
+ const interactive = document.getElementById('interactive-text');
+
+ const onClick = () => {
+    if(interactive.classList.contains('red')) {
+        interactive.classList.remove('red');
+    }
+    else {
+        interactive.classList.add('red');
+    }
+ }
+
+ interactive.addEventListener('click', onClick);
